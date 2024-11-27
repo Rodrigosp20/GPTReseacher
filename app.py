@@ -1,11 +1,19 @@
 import asyncio
+import os
 from gpt_researcher import GPTResearcher
 from detailed_report import DetailedReport
 
 import streamlit as st
-from dotenv import load_dotenv
 
-load_dotenv()
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+os.environ["TAVILY_API_KEY"] = st.secrets["TAVILY_API_KEY"]
+os.environ["FAST_LLM"] = st.secrets["FAST_LLM"]
+os.environ["SMART_LLM"] = st.secrets["SMART_LLM"]
+
+st.set_page_config(
+    page_title="GPT Researcher",
+    page_icon="🕵",
+)
 
 nome = st.query_params.get('nome')
 nif = st.query_params.get('nif')
@@ -54,7 +62,22 @@ async def research(user_input):
     st.session_state.loading = False
     st.rerun()
 
-st.title("GPT Researcher")
+st.markdown("""
+    <style>
+        .stHorizontalBlock {
+            align-items: center !important
+        }
+        
+        .stHorizontalBlock h1 {
+            margin-top: -8px;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+c1, c2 = st.columns([0.4, 0.6])
+c1.image("https://streamconsulting.pt/img/logo_dark.png",
+         use_container_width=True)
+c2.title("GPT Researcher")
 
 loading = is_loading()
 
