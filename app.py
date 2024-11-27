@@ -81,7 +81,7 @@ c2.title("GPT Researcher")
 
 loading = is_loading()
 
-is_detailed = st.toggle("Detailed Report")
+is_detailed = st.toggle("Report Detalhado", value=True)
 
 empresa = st.text_input(
     "Nome Empresa", value=st.query_params.get('nome'), disabled=loading)
