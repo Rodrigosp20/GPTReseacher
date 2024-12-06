@@ -25,6 +25,7 @@ async def detailed_research(user_input):
     detailed_report = DetailedReport(
         query=user_input,
         report_type="research_report",
+        report_source="web",
     )
 
     report = await detailed_report.run()
@@ -39,6 +40,7 @@ async def research(user_input):
     researcher = GPTResearcher(
         query=user_input,
         report_type="detailed_report",
+        report_source="web",
     )
 
     await researcher.conduct_research()
